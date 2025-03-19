@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>글쓰기</title>
+</head>
+<body>
+  <h1>전체 게시판 글쓰기</h1>
+
+  <form action="/board/register" method="post">
+    <!--제목-->
+    <input type="text" name="boardTitle">
+    <!--내용-->
+    <input type="text" name="boardContent">
+
+    <button>저장</button>
+    <a href="/board/list">돌아가기</a>
+  </form>
+
+</body>
+</html>
