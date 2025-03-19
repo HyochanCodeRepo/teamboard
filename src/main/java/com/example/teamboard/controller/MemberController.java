@@ -128,11 +128,31 @@ public class MemberController {
     }
 
     @PostMapping("/changepw")
-    public void changepwPost(PasswordDTO passwordDTO) {
+    public String changepwPost(PasswordDTO passwordDTO, Principal principal) {
         log.info("changepw 받은 값 : " +passwordDTO);
         log.info("changepw 받은 값 : " +passwordDTO);
         log.info("changepw 받은 값 : " +passwordDTO);
         log.info("changepw 받은 값 : " +passwordDTO);
+        MemberDTO memberDTO =
+            memberService.mypage(principal.getName());
 
+        log.info(memberDTO.getPassword());
+
+        log.info(memberDTO);
+        log.info(memberDTO);
+        log.info(memberDTO);
+
+        if (memberDTO.getPassword() != passwordDTO.getPassword()) {
+            log.info("기존 비밀번호와 다릅니다.");
+            return "redirect:/main";
+        }
+        if (passwordDTO.getNewpassword1() == passwordDTO.getNewpassword2()) {
+            log.info("새로운 비밀번호가 다릅니다.");
+            memberDTO.setPassword(passwordDTO.getNewpassword1());
+
+        }
+
+
+        return null;
     }
 }
