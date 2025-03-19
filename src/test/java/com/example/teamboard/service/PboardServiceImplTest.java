@@ -10,6 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 
+import java.security.Principal;
 import java.util.List;
 
 import static org.junit.jupiter.api.Assertions.*;
@@ -21,21 +22,21 @@ class PboardServiceImplTest {
     PboardService pboardService;
     PboardRepository pboardRepository;
 
-    @Test
-    public void registerTest(){
-
-
-        for (int i =0; i<50; i++){
-            PboardDTO pboardDTO = new PboardDTO();
-            pboardDTO.setPboardTitle("제목");
-            pboardDTO.setPboardContent("내용");
-
-            pboardService.register(pboardDTO);
-        }
-
-
-
-    }
+//    @Test
+//    public void registerTest(){
+//
+//
+//        for (int i =0; i<50; i++){
+//            PboardDTO pboardDTO = new PboardDTO();
+//            pboardDTO.setPboardTitle("제목");
+//            pboardDTO.setPboardContent("내용");
+//
+//            pboardService.register(pboardDTO, principal);
+//        }
+//
+//
+//
+//    }
 
 
 

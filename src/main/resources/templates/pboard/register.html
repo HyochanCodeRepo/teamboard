@@ -12,8 +12,8 @@
         제목 : <input name="pboardTitle" class="pboardTitle"> <br>
         내용 : <input name="pboardContent" class="pboardContent"> <br>
         <button type="submit">저장</button>
+        <input hidden readonly name="email" th:value="{#authentication.principal.username}">
     </form>
-
 
 </body>
 </html>

@@ -9,7 +9,6 @@ import org.springframework.data.jpa.repository.Query;
 
 public interface BoardRepository extends JpaRepository<Board,Long> {
 
-//    @Query("select p from Pboard p where p.pboardTitle like concat() ")
-//    public Page<Pboard> selectTitle(String keyword, Pageable pageable);
+
 
 }
