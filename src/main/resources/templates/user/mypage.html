@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en"
+
+      xmlns:th="http://www.thymeleaf.org"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body>
+<h1>myPage</h1>
+
+[[${memberDTO}]]
+
+    <th:block th:each="dto:${memberDTO}">
+    <form action="/user/update" method="post">
+
+            이메일 : <input th:value="${dto.email}"readonly style="background-color: grey" name="email"><br>
+            닉네임 : <input th:value="${dto.name}" name="name"><br>
+            주소 : <input th:value="${dto.addr}" name="addr"><br>
+<!--            비밀번호 : <a href="#">비밀번호 변경하러 가기</a>-->
+
+        <button>저장</button>
+    </form>
+    </th:block>
+
+
+
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+</body>
+</html>
