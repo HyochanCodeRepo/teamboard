@@ -12,5 +12,5 @@ public interface BoardService {
     public void register(BoardDTO boardDTO);
     public Page<BoardDTO> list(Pageable pageable);
     public BoardDTO read(Long boardNum);
-
+    public void del(Long boardNum);
 }
