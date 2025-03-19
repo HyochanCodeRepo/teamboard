@@ -1,7 +1,6 @@
 package com.example.teamboard.dto;
 
-import com.example.teamboard.constant.Role;
-import jakarta.persistence.Column;
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

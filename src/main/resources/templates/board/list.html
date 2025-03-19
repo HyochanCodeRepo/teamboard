@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>글목록</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+
+</head>
+<body>
+    <h1>전체 게시판 목록</h1>
+
+
+    <table>
+        <thead>
+            <th>no.</th>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성자</th>
+            <a href="/board/register">글쓰기</a>
+        </thead>
+        <tbody>
+        <th:block th:each="boardDTO: ${boardDTOList}">
+            <tr>
+                <td><a th:href="@{|/board/read/${boardDTO.boardNum}|}" th:text="${boardDTO.boardNum}"></a></td>
+                <td><a th:href="@{|/board/read/${boardDTO.boardNum}|}" th:text="${boardDTO.boardTitle}"></a></td>
+                <td><a th:href="@{|/board/read/${boardDTO.boardNum}|}" th:text="${boardDTO.boardContent}"></a></td>
+                <td><a th:href="@{|/board/read/${boardDTO.boardNum}|}" th:text="${boardDTO.Member}"></a></td>
+            </tr>
+        </th:block>
+        </tbody>
+    </table>
+
+    <!--페이징-->
+    <ul class="pagination justify-content-center">
+        <!-- 처음 페이지 버튼 -->
+        <li class="page-item" th:classappend="${boardDTOList.number == 0} ? 'disabled'">
+            <a class="page-link" th:href="@{/board/list?page=0}">처음</a>
+        </li>
+
+        <!-- 이전 페이지 버튼 -->
+        <li class="page-item" th:classappend="${!boardDTOList.hasPrevious()} ? 'disabled'">
+            <a class="page-link" th:href="@{/list?page={prev}(prev=${boardDTOList.number - 1})}">이전</a>
+        </li>
+
+        <!-- 현재 페이지 기준 앞 4개, 뒤 5개 -->
+        <li class="page-item"
+            th:each="pageNum : ${#numbers.sequence(
+            (boardDTOList.number - 4 > 0 ? boardDTOList.number - 4 : 0),
+            (boardDTOList.number + 5 < boardDTOList.totalPages - 1 ? boardDTOList.number + 5 : boardDTOList.totalPages - 1)
+        )}"
+            th:classappend="${pageNum == boardDTOList.number} ? 'active'">
+            <a class="page-link" th:href="@{/list?page={p}(p=${pageNum})}" th:text="${pageNum + 1}"></a>
+        </li>
+
+        <!-- 다음 페이지 버튼 -->
+        <li class="page-item" th:classappend="${!boardDTOList.hasNext()} ? 'disabled'">
+            <a class="page-link" th:href="@{/list?page={next}(next=${boardDTOList.number + 1})}">다음</a>
+        </li>
+
+        <!-- 마지막 페이지 버튼 -->
+        <li class="page-item" th:classappend="${boardDTOList.number == boardDTOList.totalPages - 1} ? 'disabled'">
+            <a class="page-link" th:href="@{/list?page={last}(last=${boardDTOList.totalPages - 1})}">마지막</a>
+        </li>
+    </ul>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+</body>
+</html>

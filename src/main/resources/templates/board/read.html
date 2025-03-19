@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="ko" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>상세보기</title>
+</head>
+<body>
+    <h1>상세보기</h1>
+
+    <table>
+        <thead>
+            <th>제목</th>
+            <th>내용</th>
+            <th>작성자</th>
+            <a href="/board/list">목록</a>
+        </thead>
+        <tbody>
+            <th:block>
+                <tr>
+                    <td th:text="${boardDTO.boardTitle}"></td>
+                    <td th:text="${boardDTO.boardContent}"></td>
+                    <td>?</td>
+                </tr>
+            </th:block>
+        </tbody>
+    </table>
+
+</body>
+</html>
