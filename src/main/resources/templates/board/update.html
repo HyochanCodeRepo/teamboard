@@ -1,39 +1,23 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <title><!DOCTYPE html>
-        <html lang="ko" xmlns:th="http://www.thymeleaf.org">
-        <head>
-        <meta charset="UTF-8">
-        <title>상세보기</title>
+    <title>글수정</title>
 </head>
 <body>
-<h1>상세보기</h1>
+<h1>글 수정</h1>
 
-<table>
-    <thead>
-    <th>제목</th>
-    <th>내용</th>
-    <th>작성자</th>
-    <a href="/board/list">목록</a>
-    </thead>
-    <tbody>
-    <th:block>
-        <tr>
-            <td th:text="${boardDTO.boardTitle}"></td>
-            <td th:text="${boardDTO.boardContent}"></td>
-            <td>?</td>
-        </tr>
-    </th:block>
-    <a th:href="@{|/board/update/${boardDTO.boardNum}|}">수정</a>
-    </tbody>
-</table>
+<form th:action="@{|/board/update/${boardDTO.boardNum}|}" method="post">
+    <!--제목-->
+    <input type="text" th:value="${boardDTO.boardTitle}" name="boardTitle">
+    <!--내용-->
+    <input type="text" th:value="${boardDTO.boardContent}" name="boardContent">
 
-</body>
-</html></title>
-</head>
-<body>
+    <input hidden readonly name="boardNum" th:value="${boardDTO.boardNum}">
+
+    <button>저장</button>
+    <a href="/board/list">돌아가기</a>
+</form>
 
 </body>
 </html>
