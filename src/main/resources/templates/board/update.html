@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>글수정</title>
+</head>
+<body>
+  <h1>글 수정</h1>
+
+  <form th:action="@{|/board/update/${boardDTO.boardNum}|}" method="post">
+    <!--제목-->
+    <input type="text" th:value="${boardDTO.boardTitle}" name="boardTitle">
+    <!--내용-->
+    <input type="text" th:value="${boardDTO.boardContent}" name="boardContent">
+
+    <input hidden readonly name="boardNum" th:value="${boardDTO.boardNum}">
+
+    <button>저장</button>
+    <a href="/board/list">돌아가기</a>
+  </form>
+
+</body>
+</html>

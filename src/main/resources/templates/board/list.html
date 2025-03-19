@@ -39,7 +39,7 @@
 
         <!-- 이전 페이지 버튼 -->
         <li class="page-item" th:classappend="${!boardDTOList.hasPrevious()} ? 'disabled'">
-            <a class="page-link" th:href="@{/list?page={prev}(prev=${boardDTOList.number - 1})}">이전</a>
+            <a class="page-link" th:href="@{/board/list?page={prev}(prev=${boardDTOList.number - 1})}">이전</a>
         </li>
 
         <!-- 현재 페이지 기준 앞 4개, 뒤 5개 -->
@@ -49,17 +49,17 @@
             (boardDTOList.number + 5 < boardDTOList.totalPages - 1 ? boardDTOList.number + 5 : boardDTOList.totalPages - 1)
         )}"
             th:classappend="${pageNum == boardDTOList.number} ? 'active'">
-            <a class="page-link" th:href="@{/list?page={p}(p=${pageNum})}" th:text="${pageNum + 1}"></a>
+            <a class="page-link" th:href="@{/board/list?page={p}(p=${pageNum})}" th:text="${pageNum + 1}"></a>
         </li>
 
         <!-- 다음 페이지 버튼 -->
         <li class="page-item" th:classappend="${!boardDTOList.hasNext()} ? 'disabled'">
-            <a class="page-link" th:href="@{/list?page={next}(next=${boardDTOList.number + 1})}">다음</a>
+            <a class="page-link" th:href="@{/board/list?page={next}(next=${boardDTOList.number + 1})}">다음</a>
         </li>
 
         <!-- 마지막 페이지 버튼 -->
         <li class="page-item" th:classappend="${boardDTOList.number == boardDTOList.totalPages - 1} ? 'disabled'">
-            <a class="page-link" th:href="@{/list?page={last}(last=${boardDTOList.totalPages - 1})}">마지막</a>
+            <a class="page-link" th:href="@{/board/list?page={last}(last=${boardDTOList.totalPages - 1})}">마지막</a>
         </li>
     </ul>
 
