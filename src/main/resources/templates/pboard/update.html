@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en"
+      xmlns:th="http://www.thymeleaf.org"
+><head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+    <h1>등록</h1>
+
+    <form action="" method="post">
+        제목 : <input name="pboardTitle" class="pboardTitle" th:value="${pboardDTO.pboardTitle}"> <br>
+        내용 : <input name="pboardContent" class="pboardContent" th:value="${pboardDTO.pboardContent}"> <br>
+        <button type="submit">저장</button>
+        <input hidden readonly name="pboardNum" th:value="${pboardDTO.pboardNum}">
+    </form>
+
+
+</body>
+</html>
