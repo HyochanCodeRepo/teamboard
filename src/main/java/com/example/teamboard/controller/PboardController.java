@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import java.security.Principal;
 import java.util.List;
 
 @Controller
@@ -34,7 +35,14 @@ public class PboardController {
 
     //등록post
     @PostMapping("/register")
-    public String register(PboardDTO pboardDTO){
+    public String register(PboardDTO pboardDTO, Principal principal){
+        log.info("pboardPost 진입!");
+        log.info("pboardPost 진입!");
+        log.info(principal.getName());
+        log.info(principal.getName());
+
+        log.info("pboardDTO 받은거 " + pboardDTO);
+
         pboardService.register(pboardDTO);
         return "redirect:list";
     }
