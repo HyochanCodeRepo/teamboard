@@ -1,6 +1,7 @@
 package com.example.teamboard.controller;
 
 import com.example.teamboard.dto.BoardDTO;
+import com.example.teamboard.dto.PboardDTO;
 import com.example.teamboard.entity.Board;
 import com.example.teamboard.service.BoardService;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+
+import java.security.Principal;
 
 
 @Controller
@@ -31,6 +34,7 @@ public class BoardController {
 
     @GetMapping("/register")
     public String register() {
+
         return "/board/register";
     }
 
@@ -59,4 +63,5 @@ public class BoardController {
         model.addAttribute("boardDTO", boardDTO);
         return "/board/read";
     }
+
 }
