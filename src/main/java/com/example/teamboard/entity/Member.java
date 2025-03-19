@@ -21,6 +21,10 @@ public class Member {
     private String name;
     @Column(nullable = false)
     private String addr;
+
+    @Column(nullable = false)
+    private String password;
+
     @Column(nullable = false, unique = true)
     private String email;
 
