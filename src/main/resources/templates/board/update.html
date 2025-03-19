@@ -18,6 +18,13 @@
     <button>저장</button>
     <a href="/board/list">돌아가기</a>
 </form>
+<th:block>
+    <form th:action="@{|/board/update/${boardDTO.boardNum}|}" method="post">
+        <input th:value="${boardDTO.boardNum}">
+        <button>삭제</button>
+    </form>
+</th:block>
+
 
 </body>
 </html>

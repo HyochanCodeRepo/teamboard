@@ -38,4 +38,9 @@ public class BoardServiceImpl implements BoardService{
         BoardDTO boardDTO = modelMapper.map(board, BoardDTO.class);
         return boardDTO;
     }
+
+    @Override
+    public void del(Long boardNum) {
+        boardRepository.deleteById(boardNum);
+    }
 }

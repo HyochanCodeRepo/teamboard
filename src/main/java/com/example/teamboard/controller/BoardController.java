@@ -58,4 +58,11 @@ public class BoardController {
         model.addAttribute("boardDTO", boardDTO);
         return "/board/read";
     }
+
+    @PostMapping("/del/{boardNum}")
+    public String delPost(@PathVariable("boardNum") Long boardNum){
+        log.info(boardNum);
+        boardService.del(boardNum);
+        return "redirect:/board/list";
+    }
 }
