@@ -5,26 +5,26 @@
     <title>상세보기</title>
 </head>
 <body>
-    <h1>상세보기</h1>
+<h1>상세보기</h1>
 
-    <table>
-        <thead>
-            <th>제목</th>
-            <th>내용</th>
-            <th>작성자</th>
-            <a href="/board/list">목록</a>
-            <a href="/board/register">수정</a>
-        </thead>
-        <tbody>
-            <th:block>
-                <tr>
-                    <td th:text="${boardDTO.boardTitle}"></td>
-                    <td th:text="${boardDTO.boardContent}"></td>
-                    <td>?</td>
-                </tr>
-            </th:block>
-        </tbody>
-    </table>
+<table>
+    <thead>
+    <th>제목</th>
+    <th>내용</th>
+    <th>작성자</th>
+    <a href="/board/list">목록</a>
+    </thead>
+    <tbody>
+    <th:block>
+        <tr>
+            <td th:text="${boardDTO.boardTitle}"></td>
+            <td th:text="${boardDTO.boardContent}"></td>
+            <td>?</td>
+        </tr>
+    </th:block>
+    <a th:href="@{|/board/update/${boardDTO.boardNum}|}">수정</a>
+    </tbody>
+</table>
 
 </body>
 </html>
