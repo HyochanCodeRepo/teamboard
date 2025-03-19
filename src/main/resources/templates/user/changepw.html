@@ -9,7 +9,7 @@
     <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
 </head>
 <body>
-<form action="/user/changepw" onsubmit="return send(this)" method="post">
+<form action="/user/changepw" method="post">
     <h1>비밀번호 변경</h1>
     기존 비밀번호 : <input name="password"><br>
     새 비밀번호 : <input name="newpassword1"><br>
@@ -18,26 +18,6 @@
 </form>
 
 
-<script th:inline="javascript">
-    let msg = [[${msg}]]
-    if (msg) {
-        alert(msg)
-    }
-
-    function send(obj) {
-        console.log(obj.email.value.length)
-        if (obj.newpassword1.value != obj.newpassword2.value){
-            alert("새 비밀번호가 일치하지 않습니다");
-            return false;
-        }
-        if (obj.password.value.length <= 0) {
-            alert("기존 비밀번호를 입력해주세요.");
-            return false;
-        }
-        return true;
-    }
-
-</script>
 
 </body>
 </html>
