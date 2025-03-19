@@ -1,7 +1,5 @@
 package com.example.teamboard.dto;
 
-
-import com.example.teamboard.constant.Role;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -11,15 +9,8 @@ import lombok.ToString;
 @Setter
 @ToString
 @NoArgsConstructor
-public class MemberDTO {
-
-    private Long memberNum;
-
-    private String name;
+public class PasswordDTO {
     private String password;
-    private String addr;
-    private String email;
-
-    private Role role;
-
+    private String newpassword1;
+    private String newpassword2;
 }
