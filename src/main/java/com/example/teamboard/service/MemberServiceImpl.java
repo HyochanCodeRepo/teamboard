@@ -2,6 +2,7 @@ package com.example.teamboard.service;
 
 import com.example.teamboard.constant.Role;
 import com.example.teamboard.dto.MemberDTO;
+import com.example.teamboard.dto.PasswordDTO;
 import com.example.teamboard.entity.Member;
 import com.example.teamboard.repository.MemberRepository;
 import jakarta.persistence.EntityNotFoundException;
@@ -159,6 +160,25 @@ public class MemberServiceImpl implements MemberService , UserDetailsService {
         return memberDTO;
     }
 
+    @Override
+    public void changeP(PasswordDTO passwordDTO, Principal principal) {
+        Member member =
+            memberRepository.findByEmail(principal.getName());
 
+        log.info((member.getPassword().equals(passwordDTO.getPassword())));
+        log.info(member.getPassword());
+        log.info(passwordDTO.getPassword());
 
+        if (passwordEncoder.matches(passwordDTO.getPassword() , member.getPassword()) ) {
+            log.info("password 변경 서비스 진입");
+            log.info("저장 전 password : " + member.getPassword());
+            member.setPassword(passwordEncoder.encode(passwordDTO.getNewpassword1()));
+            memberRepository.save(member);
+            log.info("저장 후 password : " + member.getPassword());
+        } else {
+            log.info("뭔가 잘못됨");
+        }
+        
+
+    }
 }

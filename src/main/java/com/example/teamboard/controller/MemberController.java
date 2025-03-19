@@ -133,26 +133,18 @@ public class MemberController {
         log.info("changepw 받은 값 : " +passwordDTO);
         log.info("changepw 받은 값 : " +passwordDTO);
         log.info("changepw 받은 값 : " +passwordDTO);
-        MemberDTO memberDTO =
-            memberService.mypage(principal.getName());
 
-        log.info(memberDTO.getPassword());
 
-        log.info(memberDTO);
-        log.info(memberDTO);
-        log.info(memberDTO);
+        if (passwordDTO.getNewpassword1().equals(passwordDTO.getNewpassword2())) {
+            memberService.changeP(passwordDTO, principal);
 
-        if (memberDTO.getPassword() != passwordDTO.getPassword()) {
-            log.info("기존 비밀번호와 다릅니다.");
+            return "redirect:/user/login";
+
+        } else {
+
+
             return "redirect:/main";
         }
-        if (passwordDTO.getNewpassword1() == passwordDTO.getNewpassword2()) {
-            log.info("새로운 비밀번호가 다릅니다.");
-            memberDTO.setPassword(passwordDTO.getNewpassword1());
 
-        }
-
-
-        return null;
     }
 }
