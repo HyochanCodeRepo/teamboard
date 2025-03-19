@@ -1,6 +1,7 @@
 package com.example.teamboard.controller;
 
 import com.example.teamboard.dto.MemberDTO;
+import com.example.teamboard.dto.PasswordDTO;
 import com.example.teamboard.service.MemberService;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
@@ -124,7 +125,14 @@ public class MemberController {
         log.info("비밀번호 변경 페이지 진입");
         log.info("비밀번호 변경 페이지 진입");
 
+    }
 
+    @PostMapping("/changepw")
+    public void changepwPost(PasswordDTO passwordDTO) {
+        log.info("changepw 받은 값 : " +passwordDTO);
+        log.info("changepw 받은 값 : " +passwordDTO);
+        log.info("changepw 받은 값 : " +passwordDTO);
+        log.info("changepw 받은 값 : " +passwordDTO);
 
     }
 }
