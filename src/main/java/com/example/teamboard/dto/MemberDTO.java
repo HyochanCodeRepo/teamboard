@@ -1,5 +1,6 @@
 package com.example.teamboard.dto;
 
+
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -14,7 +15,10 @@ public class MemberDTO {
     private Long memberNum;
 
     private String name;
+    private String password;
     private String addr;
     private String email;
+
+    private Role role;
 
 }
