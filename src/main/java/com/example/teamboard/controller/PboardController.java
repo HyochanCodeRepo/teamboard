@@ -10,6 +10,7 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.domain.Sort;
 import org.springframework.data.web.PageableDefault;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,6 +19,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import java.security.Principal;
+import java.security.Security;
 import java.util.List;
 
 @Controller
@@ -35,15 +37,13 @@ public class PboardController {
 
     //등록post
     @PostMapping("/register")
-    public String register(PboardDTO pboardDTO, Principal principal){
-        log.info("pboardPost 진입!");
-        log.info("pboardPost 진입!");
-        log.info(principal.getName());
-        log.info(principal.getName());
+    public String register(PboardDTO pboardDTO, String email){
+        log.info("pboardPost 진입!" + email);
+
 
         log.info("pboardDTO 받은거 " + pboardDTO);
 
-        pboardService.register(pboardDTO);
+        pboardService.register(pboardDTO, email);
         return "redirect:list";
     }
 
@@ -51,7 +51,9 @@ public class PboardController {
     @GetMapping("/list")
     public String list(Model model,@PageableDefault(size = 10, page = 0, sort = "pboardNum", direction = Sort.Direction.ASC) Pageable pageable){
 
-        Page<PboardDTO> pboardDTOList = pboardService.pboardList(pageable);
+        String email = SecurityContextHolder.getContext().getAuthentication().getName();
+        log.info(email);
+        Page<PboardDTO> pboardDTOList = pboardService.pboardList(email, pageable);
         model.addAttribute("pboardDTOList", pboardDTOList);
         return "pboard/list";
     }
@@ -72,8 +74,8 @@ public class PboardController {
         return "pboard/update";
     }
     @PostMapping("/update/{pboardNum}")
-    public String updatePost(PboardDTO pboardDTO, @PathVariable(name = "pboardNum") Long pboardNum){
-        pboardService.register(pboardDTO);
+    public String updatePost(PboardDTO pboardDTO, @PathVariable(name = "pboardNum") Long pboardNum, Principal principal){
+        pboardService.register(pboardDTO, principal);
         return "redirect:/pboard/read/" + pboardNum;
     }
 

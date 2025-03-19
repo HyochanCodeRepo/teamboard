@@ -1,16 +1,21 @@
 package com.example.teamboard.service;
 
 import com.example.teamboard.dto.PboardDTO;
+import com.example.teamboard.entity.Member;
 import com.example.teamboard.entity.Pboard;
+import com.example.teamboard.repository.MemberRepository;
 import com.example.teamboard.repository.PboardRepository;
 import jakarta.transaction.Transactional;
+import jakarta.validation.constraints.Email;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
+import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.stereotype.Service;
 
+import java.security.Principal;
 import java.util.Optional;
 
 @Service
@@ -23,16 +28,20 @@ public class PboardServiceImpl implements PboardService{
     private ModelMapper modelMapper = new ModelMapper();
 
     @Override
-    public void register(PboardDTO pboardDTO) {
-        log.info(pboardDTO);
+    public void register(PboardDTO pboardDTO, Email email) {
+        log.info("이메일 : {} ", email);
+        MemberRepository memberRepository = new mem
+
         Pboard pboard = modelMapper.map(pboardDTO, Pboard.class);
+        pboard.setMember(pboardRepository.findByMember_Email());
+
         pboardRepository.save(pboard);
     }
 
     @Override
-    public Page<PboardDTO> pboardList(Pageable pageable) {
+    public Page<PboardDTO> pboardList(String email, Pageable pageable) {
 
-        Page<Pboard> pageList = pboardRepository.findAll(pageable);
+        Page<Pboard> pageList = pboardRepository.findByMember_Email(email, pageable);
         Page<PboardDTO> pageDTOList = pageList.map(sss -> modelMapper.map(sss, PboardDTO.class));
         return pageDTOList;
 
